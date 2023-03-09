@@ -11,35 +11,6 @@ function resolveRootPath (str) {
     return path.resolve(__dirname, `../../${str}`);
 }
 
-function resolvePackagePath (str) {
-    return path.resolve(__dirname, `../../packages/${str}`);
-}
-
-function extractSinglePackageInfo (dir) {
-    const { name, version, dependencies } = require(resolvePackagePath(`${dir}/package.json`));
-    return {
-        name,
-        version,
-        dependencies: dependencies ? Object.keys(dependencies) : [],
-    };
-}
-
-function extractPackagesInfo () {
-    const result = [];
-    traverseDir('@packages', dir => {
-        result.push(extractSinglePackageInfo(dir));
-    });
-    return result;
-}
-
-function upcaseFirstLetter (str) {
-    if (typeof str !== 'string' || !str) return '';
-    return str.split('-').map(name => {
-        return name[0].toUpperCase() + name.substr(1);
-    }).join('');
-}
-
-
 function traverseDir (path, callback) {
     const dirs = fs.readdirSync(checkPath(path));
     dirs.map((name) => {
@@ -47,7 +18,6 @@ function traverseDir (path, callback) {
         callback(name);
     });
 }
-
 
 function checkPath (filePath) {
     if (filePath[0] === '@')
@@ -113,11 +83,7 @@ async function exec (cmd, cb) {
     });
 }
 module.exports = {
-    extractSinglePackageInfo,
     resolveRootPath,
-    resolvePackagePath,
-    extractPackagesInfo,
-    upcaseFirstLetter,
     writeJsonIntoFile,
     writeStringIntoFile,
     traverseDir,
