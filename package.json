@@ -50,10 +50,10 @@
         "registry": "https://registry.npmjs.org/"
     },
     "dependencies": {
-        "sener": "^0.0.15",
-        "sener-config": "^0.0.15",
-        "sener-form": "^0.0.15",
-        "sener-log": "^0.0.15",
-        "sener-static": "^0.0.15"
+        "sener": "^0.0.20",
+        "sener-config": "^0.0.20",
+        "sener-form": "^0.0.20",
+        "sener-log": "^0.0.20",
+        "sener-static": "^0.0.20"
     }
 }
